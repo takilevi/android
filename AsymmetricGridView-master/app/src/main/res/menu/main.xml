@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.felipecsl.asymmetricgridview.app.MainActivity" >
+
+
+    <item android:id="@+id/sixty_dp_columns"
+        android:title="60 dp Columns"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/onetwenty_dp_columns"
+          android:title="120dp Columns"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+
+    <item android:id="@+id/twoforty_dp_columns"
+          android:title="240dp Columns"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+
+    <item android:id="@+id/append_items"
+          android:title="Add more item"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+
+    <item android:id="@+id/reset_items"
+          android:title="Reset items"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+
+    <item android:id="@+id/reordering"
+          android:title="Allow reordering"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+
+
+
+</menu>
