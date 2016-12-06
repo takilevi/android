@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,15 +17,15 @@ import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-
+    private DatabaseHelper helper = new DatabaseHelper(this);
     @Bind(R.id.input_name) EditText _nameText;
     @Bind(R.id.input_address) EditText _addressText;
     @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_mobile) EditText _mobileText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
     @Bind(R.id.btn_signup) Button _signupButton;
     @Bind(R.id.link_login) TextView _loginLink;
+    @Bind(R.id.checkadmin) CheckBox _checkedAdmin;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,11 +71,25 @@ public class SignupActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String address = _addressText.getText().toString();
         String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
+
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
+        Boolean admin = _checkedAdmin.isChecked();
 
-        // TODO: Implement your own signup logic here.
+
+        Contact c = new Contact();
+        c.setName(name);
+        c.setAddress(address);
+        c.setEmail(email);
+        c.setPass(password);
+        c.setAdmin(admin);
+
+        helper.insertContact(c);
+        int admin_int = 0;
+        if(admin){admin_int = 1;}
+
+        MainActivity.admin = admin_int;
+        MainActivity.email = email;
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -91,7 +106,12 @@ public class SignupActivity extends AppCompatActivity {
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        /*Intent resultIntent = new Intent();
+        resultIntent.putExtra("email", email);
+        resultIntent.putExtra("admin",admin);
+        setResult(RESULT_OK, resultIntent);*/
+        setResult(RESULT_OK);
+
         finish();
     }
 
@@ -107,7 +127,7 @@ public class SignupActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String address = _addressText.getText().toString();
         String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
+
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
@@ -133,12 +153,6 @@ public class SignupActivity extends AppCompatActivity {
             _emailText.setError(null);
         }
 
-        if (mobile.isEmpty()) {
-            _mobileText.setError("Enter Valid Mobile Number. e.g:06309220888");
-            valid = false;
-        } else {
-            _mobileText.setError(null);
-        }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");

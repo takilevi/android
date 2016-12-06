@@ -18,7 +18,7 @@ import butterknife.Bind;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-
+    private DatabaseHelper helper = new DatabaseHelper(this);
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
@@ -59,28 +59,46 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        _loginButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
-
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+
+        _loginButton.setEnabled(false);
+
+
+        String pass =helper.searchPass(email);
+        int admin = helper.searchAdmin(email);
+        if(pass.equals(password)){
+
+            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Authenticating...");
+            progressDialog.show();
+            MainActivity.admin=admin;
+            MainActivity.email=email;
+
+            /*Intent resultIntent = new Intent();
+            resultIntent.putExtra("admin",admin);
+            resultIntent.putExtra("email",email);
+
+            setResult(RESULT_OK, resultIntent);*/
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // On complete call either onLoginSuccess or onLoginFailed
+                            onLoginSuccess();
+                            // onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+        }
+        else{onLoginFailed();}
+
+
+
+
     }
 
 
@@ -89,8 +107,12 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
+                /*setResult(RESULT_OK,data);
+                String mailc = data.getStringExtra("email");
+                System.out.println("emailcim: "+ mailc );
+                int admine = data.getIntExtra("admin",2);
+                System.out.println("admin-e: "+admine );
+                Toast.makeText(getBaseContext(), "mailcim: "+mailc+" admine: "+admine, Toast.LENGTH_LONG).show();*/
                 this.finish();
             }
         }
@@ -105,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         finish();
+
     }
 
     public void onLoginFailed() {

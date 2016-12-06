@@ -5,6 +5,7 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
+        applicationId "hu.py82c7.homework"
         minSdkVersion 21
         targetSdkVersion 24
         versionCode 2

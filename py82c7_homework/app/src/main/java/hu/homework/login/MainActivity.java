@@ -3,11 +3,20 @@ package hu.homework.login;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import butterknife.Bind;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private TextView nyitoszoveg;
+    public static int admin = 0;
+    public static String email = "proba@senki.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +26,30 @@ public class MainActivity extends ActionBarActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nyitoszoveg= (TextView)findViewById(R.id.hellotext);
+        nyitoszoveg.setText("na itt a mailcim: "+email+"itt meg az adminszint: "+admin);
+    }
+
+    /*@Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (requestCode == REQUEST_LOGIN) {
+                if (resultCode == RESULT_OK) {
+
+                    String mailc = data.getStringExtra("email");
+                    System.out.println("emailcim_main: "+ mailc );
+                    int admine = data.getIntExtra("admin",2);
+                    System.out.println("admin-e_main: "+admine );
+                    Toast.makeText(getBaseContext(), "mailcim_main: "+mailc+" admine_main: "+admine, Toast.LENGTH_LONG).show();
+                    //this.finish();
+                }
+            }
+        }*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

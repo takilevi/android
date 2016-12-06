@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Add" android:id="@+id/add_item" app:showAsAction="always" android:icon="@drawable/ic_action_content_new"/>
+    <item android:title="Menus" android:id="@+id/weeklymenu" />
+    <item android:title="Soups and Starters" android:id="@+id/soup" />
+    <item android:title="The chef’s offers" android:id="@+id/chef" />
+    <item android:title="Desserts" android:id="@+id/dessert" />
+    <item android:title="Drinks" android:id="@+id/drink" />
+</menu>
