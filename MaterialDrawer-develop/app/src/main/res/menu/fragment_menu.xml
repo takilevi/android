@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_1"
+        android:orderInCategory="1"
+        android:title="Chair ID = 1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_2"
+        android:orderInCategory="1"
+        android:title="Chair ID = 2"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_3"
+        android:orderInCategory="1"
+        android:title="Chair ID = 3"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_4"
+        android:orderInCategory="1"
+        android:title="Chair ID = 4"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_5"
+        android:orderInCategory="1"
+        android:title="Chair ID = 5"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_6"
+        android:orderInCategory="1"
+        android:title="Chair ID = 6"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,22 @@
+package hu.py82c7.homework.app.drawerItems;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+class CustomBaseViewHolder extends RecyclerView.ViewHolder {
+    protected View view;
+    protected ImageView icon;
+    protected TextView name;
+    protected TextView description;
+
+    public CustomBaseViewHolder(View view) {
+        super(view);
+
+        this.view = view;
+        this.icon = (ImageView) view.findViewById(hu.py82c7.homework.app.R.id.material_drawer_icon);
+        this.name = (TextView) view.findViewById(hu.py82c7.homework.app.R.id.material_drawer_name);
+        this.description = (TextView) view.findViewById(hu.py82c7.homework.app.R.id.material_drawer_description);
+    }
+}

@@ -22,8 +22,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
@@ -36,20 +34,6 @@ public class MainActivity extends ActionBarActivity {
         nyitoszoveg.setText("na itt a mailcim: "+email+"itt meg az adminszint: "+admin);
     }
 
-    /*@Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == REQUEST_LOGIN) {
-                if (resultCode == RESULT_OK) {
-
-                    String mailc = data.getStringExtra("email");
-                    System.out.println("emailcim_main: "+ mailc );
-                    int admine = data.getIntExtra("admin",2);
-                    System.out.println("admin-e_main: "+admine );
-                    Toast.makeText(getBaseContext(), "mailcim_main: "+mailc+" admine_main: "+admine, Toast.LENGTH_LONG).show();
-                    //this.finish();
-                }
-            }
-        }*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
